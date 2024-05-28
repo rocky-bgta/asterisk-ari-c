@@ -1,28 +1,36 @@
-﻿cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.14)
 
-project(asterisk-ari-c)
+# Project name and version
+project(MyProject VERSION 1.0)
 
+# Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Set the vcpkg toolchain file if VCPKG_ROOT environment variable is defined
-if(DEFINED ENV{VCPKG_ROOT})
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-endif()
+# Set the path to the vcpkg toolchain file
+set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake")
 
-# Find Boost libraries
+# Include directories
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+# List of source files explicitly
+set(SOURCES
+    ${PROJECT_SOURCE_DIR}/src/main.cpp
+    # Add other necessary source files here
+)
+
+# Add an executable
+add_executable(MyProject ${SOURCES})
+
+# Find and link Boost libraries
 find_package(Boost REQUIRED COMPONENTS program_options)
-
-if(NOT Boost_FOUND)
-    message(FATAL_ERROR "Could not find Boost")
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    target_link_libraries(MyProject Boost::program_options)
 endif()
 
-# Include directories for Boost headers and your project headers
-include_directories(${Boost_INCLUDE_DIRS})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-# Add the executable
-add_executable(asterisk-ari-c src/main.cpp)
-
-# Link Boost libraries
-target_link_libraries(asterisk-ari-c PRIVATE Boost::program_options)
+# Example: fmt
+find_package(fmt REQUIRED)
+if (fmt_FOUND)
+    target_link_libraries(MyProject fmt::fmt)
+endif()
