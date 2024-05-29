@@ -11,7 +11,9 @@ aricpp provides pkg-config modules:
 
 
   ========================
-  Remove-Item -Recurse -Force build
+  Remove-Item -Recurse -Force build 
+  or
+  rm -rf build
   mkdir buid
   cd build
   cmake ..
