@@ -16,4 +16,5 @@ aricpp provides pkg-config modules:
   rm -rf build
   mkdir buid
   cd build
+  cmake --build .
   cmake ..
