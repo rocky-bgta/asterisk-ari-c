@@ -8,3 +8,10 @@ aricpp provides pkg-config modules:
 
   # Asterisk ARI interface bindings for modern C++
   aricpp
+
+
+  ========================
+  Remove-Item -Recurse -Force build
+  mkdir buid
+  cd build
+  cmake ..
