@@ -17,6 +17,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 set(SOURCES
     #${PROJECT_SOURCE_DIR}/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/hold_call.cpp
+    #${PROJECT_SOURCE_DIR}/src/mixing_bridge.cpp
 
     #${PROJECT_SOURCE_DIR}/src/holding_bridge.cpp
     #${PROJECT_SOURCE_DIR}/src/query.cpp
@@ -33,6 +34,12 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 if (Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(MyProject Boost::program_options)
+endif()
+
+find_package(nlohmann_json CONFIG REQUIRED)
+if(nlohmann_json_FOUND)
+    include_directories(${nlohmann_json_INCLUDE_DIRS})
+    target_link_libraries(MyProject nlohmann_json::nlohmann_json)
 endif()
 
 # Example: fmt
