@@ -48,15 +48,17 @@ inline std::string to_string(bool b)
     return (b ? "true" : "false");
 }
 
+
+
 int main(int argc, char* argv[])
 {
     try
     {
-        string host = "localhost";
+        string host = "http://192.168.0.180";
         string port = "8088";
         string username = "asterisk";
-        string password = "asterisk";
-        string application = "attendant";
+        string password = "secret";
+        string application = "my-stasis-app";
         bool sipCh = false; // default = pjsip channel
 
         namespace po = boost::program_options;

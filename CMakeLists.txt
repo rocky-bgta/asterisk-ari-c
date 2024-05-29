@@ -8,14 +8,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Set the path to the vcpkg toolchain file
-set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake")
-
+#set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake")
+set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # List of source files explicitly
 set(SOURCES
-    ${PROJECT_SOURCE_DIR}/src/main.cpp
+    #${PROJECT_SOURCE_DIR}/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/hold_call.cpp
 
     #${PROJECT_SOURCE_DIR}/src/holding_bridge.cpp
     #${PROJECT_SOURCE_DIR}/src/query.cpp
@@ -35,7 +36,7 @@ if (Boost_FOUND)
 endif()
 
 # Example: fmt
-find_package(fmt REQUIRED)
+#[[find_package(fmt REQUIRED)
 if (fmt_FOUND)
     target_link_libraries(MyProject fmt::fmt)
-endif()
+endif()]]
