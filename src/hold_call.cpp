@@ -28,12 +28,21 @@ int main() {
             return;
         }
         std::cout << "Asterisk Connected" << '\n';
+
         client.OnEvent("StasisStart", [](const JsonTree& e) {
             Dump(e); // print the json on the console
             auto id = Get<std::string>(e, { "channel", "id" });
             std::cout << "Channel id " << id << " entered stasis application\n";
             });
+
+        client.OnEvent("StasisEnd", [](const JsonTree& e) {
+            Dump(e); // print the json on the console
+            auto id = Get<std::string>(e, { "channel", "id" });
+            std::cout << "Channel id " << id << " end stasis application\n";
+            });
+
         });
+   
 
     //AriModel channels(client);
 
