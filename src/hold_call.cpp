@@ -31,8 +31,11 @@ int main() {
 
         client.OnEvent("StasisStart", [](const JsonTree& e) {
             Dump(e); // print the json on the console
-            auto id = Get<std::string>(e, { "channel", "id" });
-            std::cout << "Channel id " << id << " entered stasis application\n";
+            auto channelId = Get<std::string>(e, { "channel", "id" });
+            auto callerExtension = Get<std::string>(e, { "channel", "caller","number" });
+            auto targetExtension = Get<std::string>(e, { "channel", "dialplan","exten"});
+            std::cout << "Target Extension number " << targetExtension << " number\n";
+            std::cout << "Channel id " << channelId << " entered stasis application\n";
             });
 
         client.OnEvent("StasisEnd", [](const JsonTree& e) {
@@ -42,9 +45,8 @@ int main() {
             });
 
         });
-   
 
-    //AriModel channels(client);
+        //AriModel channels(client);
 
    
 

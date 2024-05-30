@@ -16,10 +16,10 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # List of source files explicitly
 set(SOURCES
     #${PROJECT_SOURCE_DIR}/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/hold_call.cpp
+    #${PROJECT_SOURCE_DIR}/src/hold_call.cpp
     #${PROJECT_SOURCE_DIR}/src/mixing_bridge.cpp
 
-    #${PROJECT_SOURCE_DIR}/src/holding_bridge.cpp
+    ${PROJECT_SOURCE_DIR}/src/holding_bridge.cpp
     #${PROJECT_SOURCE_DIR}/src/query.cpp
     #${PROJECT_SOURCE_DIR}/src/other_source_file1.cpp
     #${PROJECT_SOURCE_DIR}/src/other_source_file2.cpp

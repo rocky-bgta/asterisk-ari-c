@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 {
     try
     {
-        string host = "http://192.168.0.180";
+        string host = "192.168.0.180";
         string port = "8088";
         string username = "asterisk";
         string password = "secret";
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
                 bridge = move(newBridge);
                 cout << "Bridge created" << endl;
             },
-            Bridge::Type::holding);
+            Bridge::Type::mixing);
         model.OnStasisStarted(
             [&channels, &bridge](shared_ptr<Channel> ch, bool external)
             {
