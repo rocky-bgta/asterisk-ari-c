@@ -13,8 +13,9 @@ void Dump(const json& j) {
 
 int main() {
     // Static values for ARI connection
-    const std::string host = "192.168.0.180";
-    const std::string port = "8088";
+    //const std::string host = "192.168.0.180";
+    const std::string host = "192.168.30.87";
+    const std::string port = "18088";
     const std::string username = "asterisk";
     const std::string password = "secret";
     const std::string stasisapp = "my-stasis-app";
