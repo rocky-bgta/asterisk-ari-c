@@ -1,7 +1,8 @@
 
 #include "../include/client.h"
-#include <aricpp/arimodel.h>
+#include "arimodel.h"
 #include <nlohmann/json.hpp>
+#include <httplib.h>
 
 boost::asio::io_context ios;
 using namespace aricpp;
@@ -21,20 +22,28 @@ int main() {
     const std::string stasisapp = "my-stasis-app";
 
     aricpp::Client client(ios, host, port, username, password, stasisapp);
-    
+    aricpp::AriModel channels(client);
+
     client.Connect([&](boost::system::error_code e) {
         if (e)
         {
             std::cerr << "Asterisk Error connecting: " << e.message() << '\n';
             return;
         }
-        std::cout << "Asterisk Connected" << '\n';
+        else 
+        {
+            std::cout << "Asterisk Connected" << '\n';
+            
+        }
 
         client.OnEvent("StasisStart", [](const JsonTree& e) {
             Dump(e); // print the json on the console
             auto channelId = Get<std::string>(e, { "channel", "id" });
             auto callerExtension = Get<std::string>(e, { "channel", "caller","number" });
             auto targetExtension = Get<std::string>(e, { "channel", "dialplan","exten"});
+
+            
+
             std::cout << "Target Extension number " << targetExtension << " number\n";
             std::cout << "Channel id " << channelId << " entered stasis application\n";
             });
